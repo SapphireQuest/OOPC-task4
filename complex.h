@@ -12,32 +12,15 @@ class Complex {
 
         Complex(double realPart, double imagPart) : Real(realPart), Imag(imagPart){};
 
-        Complex& operator=(const Complex& s)
-        {
-            Real = s.Real;
-            Imag = s.Imag;
-            return *this;
-        };
+        Complex& operator=(const Complex& s);
+        Complex& operator=(double co);
 
-        Complex operator-() const
-        {
-            return Complex(-Real, -Imag);
-        };
+        Complex operator+(const Complex& co) const;
 
-        Complex& operator=(double co)
-        {
-            Real = co;
-            Imag = 0;
-            return *this;
-        }
+        Complex operator-() const;
 
-        Complex operator+(const Complex& co) const
-        {
-            Complex summed;
-            summed.Real = this->Real + co.Real;
-            summed.Imag = this->Imag + co.Imag;
-            return summed; 
-        }
+
+
 
         Complex& operator-=(Complex co)
         {
@@ -75,8 +58,6 @@ class Complex {
             Imag /= co.Imag;
             return *this;
         }
-
-
 
 
 
