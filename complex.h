@@ -18,6 +18,9 @@ class Complex {
         Complex& operator-=(Complex co);
         Complex& operator*=(Complex co);
         Complex& operator/=(Complex co);
+
+        double amplitude() const;
+        double phase() const;
 };
 
 Complex operator+(Complex s1, Complex s2);

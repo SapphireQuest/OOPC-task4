@@ -1,4 +1,6 @@
 #include "complex.h"
+
+#include <cmath>
 #include <stdexcept> 
 
 Complex& Complex::operator=(const Complex& s)
@@ -98,4 +100,14 @@ bool operator==(Complex s1, Complex s2)
 bool operator!=(Complex s1, Complex s2)
 {
     return !(s1 == s2);
+}
+
+double Complex::amplitude() const
+{
+    return sqrt(pow(Real,2) + pow(Imag,2));
+}
+
+double Complex::phase() const
+{
+    return atan2(Imag,Real);
 }
