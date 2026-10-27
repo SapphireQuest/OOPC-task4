@@ -1,6 +1,5 @@
 #include "complex.h"
-
-#include <iostream>
+#include <stdexcept> 
 
 Complex& Complex::operator=(const Complex& s)
 {
@@ -16,7 +15,7 @@ Complex& Complex::operator=(double co)
     return *this;
 }
 
-inline Complex::operator+(Complex s1, Complex s2)
+Complex operator+(Complex s1, Complex s2)
 {
     Complex n(s1);
     return n += s2; 
@@ -29,11 +28,10 @@ Complex& Complex::operator+=(Complex co)
     return *this;
 }
 
-
-Complex::operator-() const
+Complex Complex::operator-() const
 {
     return Complex(-Real, -Imag);
-};
+}
 
 Complex& Complex::operator-=(Complex co)
 {
@@ -42,13 +40,13 @@ Complex& Complex::operator-=(Complex co)
     return *this;
 }
 
-inline Complex::operator-(Complex s1, Complex s2)
+Complex operator-(Complex s1, Complex s2)
 {
     Complex n(s1);
     return n -= s2;
 }
 
-inline Complex::operator*(Complex s1, Complex s2)
+Complex operator*(Complex s1, Complex s2)
 {
     Complex n(s1);
     return n *= s2;
@@ -63,7 +61,7 @@ Complex& Complex::operator*=(Complex co)
     return *this;
 }
 
-inline Complex::operator/(Complex s1, Complex s2)
+Complex operator/(Complex s1, Complex s2)
 {
     Complex n(s1);
     return n /= s2;
@@ -72,20 +70,21 @@ inline Complex::operator/(Complex s1, Complex s2)
 Complex& Complex::operator/=(Complex co)
 {
     double denominator = co.Real*co.Real + co.Imag*co.Imag;
-    if (denominator == 0);
+    
+    if (denominator == 0) 
     {
-        //TODO: throw and catch this
+        throw std::runtime_error("Dzielenie przez zero");
     }
 
     double tempReal = ((Real*co.Real) + (Imag*co.Imag))/denominator;
-    double tempImag = ((Imag*co.Real) + (Real*co.Imag))/denominator;
+    double tempImag = ((Imag*co.Real) - (Real*co.Imag))/denominator;
+    
     Real = tempReal;
     Imag = tempImag;
     return *this;
 }
 
-
-std::ostream& Complex::operator<<(std::ostream& s, const Complex& c)
+std::ostream& operator<<(std::ostream& s, const Complex& c)
 {
     s << "(" << c.Real << "," << c.Imag << ")";
     return s;
