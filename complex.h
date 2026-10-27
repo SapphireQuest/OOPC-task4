@@ -25,3 +25,5 @@ Complex operator-(Complex s1, Complex s2);
 Complex operator*(Complex s1, Complex s2);
 Complex operator/(Complex s1, Complex s2);
 std::ostream& operator<<(std::ostream& s, const Complex& c);
+bool operator==(Complex s1, Complex s2);
+bool operator!=(Complex s1, Complex s2);

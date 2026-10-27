@@ -89,3 +89,13 @@ std::ostream& operator<<(std::ostream& s, const Complex& c)
     s << "(" << c.Real << "," << c.Imag << ")";
     return s;
 }
+
+bool operator==(Complex s1, Complex s2)
+{
+    return (s1.Real == s2.Real) && (s1.Imag == s2.Imag);
+}
+
+bool operator!=(Complex s1, Complex s2)
+{
+    return !(s1 == s2);
+}
